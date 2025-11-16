@@ -113,11 +113,5 @@ SELECT
     (SELECT COUNT(DISTINCT brand) FROM products) as unique_brands,  -- Уникальных брендов в продуктах 
     (SELECT COUNT(DISTINCT customer_id) FROM transactions) as unique_customers;  -- Уникальных клиентов 
     
--- СКОЛЬКО УНИКАЛЬНЫХ PRODUCT_ID У НАС ЕСТЬ В БАЗЕ
-SELECT 
-    COUNT(DISTINCT product_id) as unique_product_ids
-FROM products;                                   -- = 190
 
--- Последние два запроса дадут одинаковый результат:
-SELECT COUNT(*) as total_records FROM products;  -- = 190  
 
