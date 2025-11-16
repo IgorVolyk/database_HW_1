@@ -116,4 +116,8 @@ SELECT
 -- СКОЛЬКО УНИКАЛЬНЫХ PRODUCT_ID У НАС ЕСТЬ В БАЗЕ
 SELECT 
     COUNT(DISTINCT product_id) as unique_product_ids
-FROM products;
+FROM products;                                   -- = 190
+
+-- Последние два запроса дадут одинаковый результат:
+SELECT COUNT(*) as total_records FROM products;  -- = 190  
+
