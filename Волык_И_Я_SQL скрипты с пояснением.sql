@@ -277,24 +277,24 @@ ALTER TABLE transactions
 ADD CONSTRAINT fk_transactions_customers 
 FOREIGN KEY (customer_id) REFERENCES customers(customer_id);
 
--- КОМПЛЕКСНАЯ ПРОВЕРКА ЦЕЛОСТНОСТИ ВСЕХ СВЯЗЕЙ В БАЗЕ ДАННЫХ
+-- КОМПЛЕКСНАЯ ПРОВЕРКА ЦЕЛОСТНОСТИ ВСЕХ СВЯЗЕЙ В БАЗЕ ДАННЫХ, все проверки должны вернуть 0
 -- Проверка связи транзакций с клиентами
 SELECT COUNT(*) as missing_customer_links
 FROM transactions t
 LEFT JOIN customers c ON t.customer_id = c.customer_id
-WHERE c.customer_id IS NULL;
+WHERE c.customer_id IS NULL; -- получили 0
 
 -- Проверка связи позиций заказов с транзакциями
 SELECT COUNT(*) as missing_transaction_links
 FROM order_items oi
 LEFT JOIN transactions t ON oi.transaction_id = t.transaction_id
-WHERE t.transaction_id IS NULL;
+WHERE t.transaction_id IS NULL; -- получили 0
 
 -- Проверка связи позиций заказов с товарами
 SELECT COUNT(*) as missing_product_links
 FROM order_items oi
 LEFT JOIN products p ON oi.product_sku = p.product_sku
-WHERE p.product_sku IS NULL;
+WHERE p.product_sku IS NULL; -- получили 0
 
 -- ФИНАЛЬНАЯ КОМПЛЕКСНАЯ СВОДКА ПО СОСТОЯНИЮ БАЗЫ ДАННЫХ
 -- Общая статистика по наполненности таблиц и целостности данных
